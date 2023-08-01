@@ -1,0 +1,30 @@
+# Animated-Letter
+
+this is a challenge implementation animation based on prettier website 
+
+it was implemented using React with Typescript it is not the optimal solution as there was the time condition so it can be better
+
+
+# Screenshot of the animation  
+<p align="center">
+   <img src="https://github.com/abderrahmaneGasmi/Animated-Letter/assets/119729705/9a153dff-f35b-4b16-aadd-c392b48aaa07" width="500"/>
+   </p>
+
+
+
+# 💻 Running the project
+
+to run this project 
+Clone this repository :
+```
+git clone [https://github.com/abderrahmaneGasmi/Animated-Letter]
+cd animatedletter
+```
+Install packages :
+```
+npm i
+```
+When installation is complete, run command :
+```
+npm run dev
+```
