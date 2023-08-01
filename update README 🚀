@@ -1,4 +1,4 @@
-# Animated-Letter
+# Project
 
 this is a challenge implementation animation based on prettier website 
 
@@ -28,3 +28,4 @@ When installation is complete, run command :
 ```
 npm run dev
 ```
+
