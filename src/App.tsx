@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-
+import { motion } from "framer-motion";
+import Line from "./layout/Line";
 // import { useState } from 'react'
 const style: { [key: string]: React.CSSProperties } = {
   main: {
@@ -1208,6 +1209,7 @@ function App() {
   const [xvalues, setXvalues] = useState([] as number[]);
   const [colors, setColors] = useState([] as string[]);
   const [directions, setDirections] = useState([] as number[]);
+
   useEffect(() => {
     // Set the initial state for items with their translateX values
     setXvalues(initialvalues);
@@ -1223,6 +1225,7 @@ function App() {
         () => Math.floor(Math.random() * 2) + 1
       )
     );
+
     // Animate items back to 0 after 2 seconds
   }, []);
 
@@ -1230,7 +1233,7 @@ function App() {
     const animateBackToZero = () => {
       setXvalues((prevItems) =>
         prevItems.map((item, i) => {
-          const ratio = initialvalues[i] / 90;
+          const ratio = initialvalues[i] / 30;
           return item <= 0 ? 0 : item - ratio;
         })
       );
@@ -1251,10 +1254,26 @@ function App() {
 
   return (
     <div className="container" style={style.main}>
-      <h1 style={style.title}>
-        Letter <span style={{ color: "#f7ba3e" }}>T</span> Design{" "}
-        <span style={{ color: "#ea5e5e" }}>By</span> React
-      </h1>
+      <motion.div
+        initial={{ opacity: 0, x: 350 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1 }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "18px",
+        }}
+      >
+        <Line direction="left" balldelay={0} />
+
+        <div style={style.title}>
+          Letter <span style={{ color: "#f7ba3e" }}>T</span> Design{" "}
+          <span style={{ color: "#ea5e5e" }}>By</span> React
+        </div>
+        <Line direction="right" balldelay={1} />
+      </motion.div>
+
       <div className="container" style={style.container}>
         {/* <Row items={[4, 1, 5, 2, 5, 6, 4, 3, 4, 4, 1, 3, 6]} />
         <Row items={[2, 4, 3, 3, 4, 3, 5, 5, 5, 1, 4, 2, 3, 1]} />
@@ -1304,14 +1323,23 @@ function Row({
   direction: number;
 }) {
   const row = React.useRef<HTMLDivElement>(null);
-
   return (
-    <div
+    <motion.div
+      // layout
       className="row"
       style={{
         ...style.row,
 
         transform: `translateX( ${direction == 1 ? "" : "-"}${xvalue}%)`,
+      }}
+      initial={{
+        opacity: 0.3,
+      }}
+      transition={{
+        duration: 1,
+      }}
+      animate={{
+        opacity: 1,
       }}
       ref={row}
     >
@@ -1330,7 +1358,7 @@ function Row({
           </>
         );
       })}
-    </div>
+    </motion.div>
   );
 }
 function Item({ color, number }: { color: string; number: number }) {
